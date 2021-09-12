@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import {BASE_URL} from '../constraints/index'
+import {Link} from "react-router-dom";
 
 function Login({onLogin}) {
     const [username, setUsername] = useState("");
@@ -27,6 +28,8 @@ function Login({onLogin}) {
                 />
                 <button type="submit">Login</button>
         </form>
+        <Link to='/'>Home</Link>
+        <Link to='/signup'>Signup</Link>
         </>
     )
 }
