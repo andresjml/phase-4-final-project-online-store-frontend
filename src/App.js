@@ -5,13 +5,15 @@ import {Switch, Route} from "react-router-dom";
 import Home from '../src/components/Home'
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import OrderContainer from "../src/components/OrderContainer"
 
 function App() {
   const [user, setUser] = useState(null);
-
+  
   useEffect(() => {
-    fetch(BASE_URL+"/me").then((response) => {
-      if (response.ok) {
+    fetch(BASE_URL+"/me")
+      .then((response) => {
+        if (response.ok) {
         response.json().then((user) => setUser(user));
       }
     });
@@ -20,22 +22,20 @@ function App() {
   if (user) {
     return (
       <>
-      <h2>Welcome, {user.username}!</h2>
-      
-        <NavBar />
+      <h2>Welcome, {user.username}!</h2>      
+        <NavBar onLogout={setUser}/>
         <Switch>
           <Route exact path='/'>
             <Home/>
           </Route>
-          <Route path='/login'>
-            <Login/>
+          <Route  path='/orders'>
+            <OrderContainer user={user}/>
           </Route>
+          
           <Route path= '/signup'>
             <Signup/>
-          </Route>
-  
-        </Switch>
-      
+          </Route>  
+        </Switch>      
       </>
     );
   } else {
