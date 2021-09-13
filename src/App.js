@@ -15,7 +15,7 @@ function App() {
     fetch(BASE_URL+"/me")
       .then((response) => {
         if (response.ok) {
-        response.json().then((user) => setUser(user));
+        response.json().then((resp) => setUser(resp));
       }
     });
   }, []);
@@ -27,7 +27,7 @@ function App() {
         <NavBar onLogout={setUser}/>
         <Switch>
           <Route exact path='/'>
-            <Home/>
+            <ProductContainer />
           </Route>
           <Route  path='/orders'>
             <OrderContainer user={user}/>

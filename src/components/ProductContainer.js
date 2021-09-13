@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { BASE_URL } from '../constraints';
 import Product from '../components/Product'
 
-function ProductContainer() {
+function ProductContainer({user}) {
     const [products, setProducts]=useState(null)
 
     useEffect(() => {
@@ -24,6 +24,7 @@ function ProductContainer() {
     return (
         <>
           <h1>Product Container</h1>
+          
           <div>{products && populateProducts()}</div>
           
         </>

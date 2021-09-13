@@ -24,6 +24,7 @@ function OrderContainer({user}) {
     return (
         <>
             <h1>Order container</h1>
+            <button type="button" class="btn btn-outline-primary">Start New Order</button>
             <div>{orders && populateOrders()}</div>
             
         </>

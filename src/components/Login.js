@@ -28,8 +28,7 @@ function Login({onLogin}) {
                 />
                 <button type="submit">Login</button>
         </form>
-        <Link to='/'>Home</Link>
-        <Link to='/signup'>Signup</Link>
+        
         </>
     )
 }
