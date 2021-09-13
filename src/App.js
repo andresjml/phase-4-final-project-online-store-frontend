@@ -6,6 +6,7 @@ import Home from '../src/components/Home'
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import OrderContainer from "../src/components/OrderContainer"
+import ProductContainer from './components/ProductContainer';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route  path='/orders'>
             <OrderContainer user={user}/>
+          </Route>
+          <Route  path='/products'>
+            <ProductContainer />
           </Route>
           
           <Route path= '/signup'>

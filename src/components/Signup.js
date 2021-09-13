@@ -6,7 +6,7 @@ function Signup() {
         <div>
         <h1>Signup</h1>
         <Link to='/'>Home</Link>
-        <Link to='/login'>Login</Link> 
+        
         </div>
     )
 }

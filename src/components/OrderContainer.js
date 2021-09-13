@@ -7,7 +7,7 @@ function OrderContainer({user}) {
 
     useEffect(() => {
         fetch(BASE_URL+`/users/${user.id}/orders`)
-          .then((response) => {
+        .then((response) => {
             if (response.ok) {
             response.json().then((resp) => setOrders(resp));
           }
@@ -18,7 +18,7 @@ function OrderContainer({user}) {
     
     function populateOrders(){
         
-        return orders.map(order => <Order key={order.id} order={order}/>)
+        return (orders.map(order => <Order key={order.id} order={order}/>))
     }
 
     return (
