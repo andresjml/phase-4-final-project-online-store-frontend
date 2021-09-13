@@ -14,17 +14,20 @@ function OrderContainer({user}) {
         });
     }, []);
 
-    console.log(orders)
+    
     
     function populateOrders(){
+        
         return orders.map(order => <Order key={order.id} order={order}/>)
     }
 
     return (
         <>
-            {orders && populateOrders}
+            <h1>Order container</h1>
+            <div>{orders && populateOrders()}</div>
+            
         </>
-    )
+    );
 }
 
 export default OrderContainer
