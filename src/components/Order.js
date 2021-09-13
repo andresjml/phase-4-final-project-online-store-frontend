@@ -7,11 +7,29 @@ function Order({order}) {
 
     return (
         <>
-            <p>Order # {order.id}</p>
+            
+
+
+
+
+
+
+
+            <h2>Order # {order.id}</h2>
             {
                 order.order_products.map(item =>{
                     return (                        
-                        <p>Item: {item.product.name} - Quantity {item.product_qty}- Total $ {(item.product_qty*item.product.price).toFixed(2)}</p>
+                        <div class="card" style={{width: '18rem'}}>
+                            <div class="card-header">
+                            
+                            Item: {item.product.name}
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Quantity {item.product_qty}</li>
+                                <li class="list-group-item">Total $ {(item.product_qty*item.product.price)}</li>
+                                
+                            </ul>
+                        </div>
                     )
                 })
             }
