@@ -34,7 +34,8 @@ function OrderItem({item}) {
         })
           .then(res => res.json())
           .then(setNewItem);  
-        setToggle(false)         
+        setToggle(false)
+               
     }    
 
    //DELETE ITEM
@@ -51,7 +52,7 @@ function OrderItem({item}) {
     return (
         <> 
         {deleted && (     
-        <div className="card" style={{width: '50rem'}}>
+        <div className="card" style={{width: '30rem'}}>
             <div className="card-header">
                 {newItem.product.name}/  Qty: {newItem.product_qty} / Price$: {newItem.product.price} / Total Price$ {newItem.product_qty*newItem.product.price}
                 <button type="button" className="btn btn-outline-primary btn-sm" onClick={handleEditClick}>Edit</button>                
