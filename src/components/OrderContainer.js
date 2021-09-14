@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import Order from '../components/Order'
+import Order from './Order'
 import { BASE_URL } from '../constraints';
 
 function OrderContainer({user}) {
     const [orders,setOrders]=useState(null)
+    
 
     useEffect(() => {
         fetch(BASE_URL+`/users/${user.id}/orders`)
