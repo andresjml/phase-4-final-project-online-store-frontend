@@ -7,9 +7,10 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import OrderContainer from "../src/components/OrderContainer"
 import ProductContainer from './components/ProductContainer';
+import NewOrder from './components/NewOrder';
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   
   useEffect(() => {
     fetch(BASE_URL+"/me")
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route  path='/products'>
             <ProductContainer />
+          </Route>
+          <Route  path='/new_order'>
+            <NewOrder />
           </Route>
           
           <Route path= '/signup'>
