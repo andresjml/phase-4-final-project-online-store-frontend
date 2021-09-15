@@ -13,6 +13,7 @@ function App() {
   const [user, setUser] = useState(null)
   const[newOrderId, setNewOrderId]=useState()
   
+  //FIND SESSION[:USER_ID] IN THE BACKEND
   console.log(user)
   useEffect(() => {
     fetch(BASE_URL+"/me")
@@ -25,6 +26,7 @@ function App() {
 
   console.log(user)
 
+  //CREATE A NEW ORDER (TO PASS NEW ORDER ID TO NEW ORDER COMPONENT)
   function onClickNewOrder(){
     fetch(BASE_URL +`/orders`, {
       method: "POST",
@@ -34,8 +36,7 @@ function App() {
       body: JSON.stringify({user_id: user.id, paid:false}),
     })
       .then(res => res.json())
-      .then(setNewOrderId);  
-    
+      .then(setNewOrderId);   
   }    
   
 

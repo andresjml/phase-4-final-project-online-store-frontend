@@ -10,7 +10,7 @@ function NewOrder({order}) {
     
     
     
-
+    //FETCH PRODUCTS
     useEffect(() => {
         fetch(BASE_URL+`/products`)
         .then((response) => {

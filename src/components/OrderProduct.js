@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { BASE_URL } from '../constraints'
 
-function OrderItem({item,onEdit}) {
+function OrderProduct({item,onEdit}) {
     const [newItem, setNewItem]=useState({...item})
     const [toggle, setToggle]=useState(false)
     const [deleted, setDeleted]=useState(true)
@@ -10,7 +10,7 @@ function OrderItem({item,onEdit}) {
         setToggle(!toggle)
     }  
 
-    //PATCH
+    //UPDATE ORDER ITEM QUANTITY
     function handleInputChange(event) {
         setNewItem({
             ...newItem, 
@@ -99,4 +99,4 @@ function OrderItem({item,onEdit}) {
     )
 }
 
-export default OrderItem
+export default OrderProduct
