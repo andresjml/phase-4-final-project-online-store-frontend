@@ -10,7 +10,9 @@ import ProductContainer from './components/ProductContainer';
 import NewOrder from './components/NewOrder';
 
 function App() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState()
+  const[newOrderId, setNewOrderId]=useState()
+  
   
   useEffect(() => {
     fetch(BASE_URL+"/me")
@@ -21,6 +23,22 @@ function App() {
     });
   }, []);
 
+  function onClickNewOrder(){
+    fetch(BASE_URL +`/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({user_id: user.id, paid:false}),
+    })
+      .then(res => res.json())
+      .then(setNewOrderId);  
+    
+  }    
+  
+
+  
+
   if (user) {
     return (
       <>
@@ -28,16 +46,16 @@ function App() {
         <NavBar onLogout={setUser}/>
         <Switch>
           <Route exact path='/'>
-            <ProductContainer />
+            <Home />
           </Route>
           <Route  path='/orders'>
             <OrderContainer user={user}/>
           </Route>
           <Route  path='/products'>
-            <ProductContainer />
+            <ProductContainer onClickNewOrder={onClickNewOrder} />
           </Route>
           <Route  path='/new_order'>
-            <NewOrder />
+            <NewOrder user={user} order={newOrderId} />
           </Route>
           
           <Route path= '/signup'>

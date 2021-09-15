@@ -3,7 +3,7 @@ import Order from './Order'
 import { BASE_URL } from '../constraints';
 import {Link} from "react-router-dom";
 
-function OrderContainer({user}) {
+function OrderContainer({user,onClickNewOrder}) {
     const [orders,setOrders]=useState(null)
     
 
@@ -26,7 +26,7 @@ function OrderContainer({user}) {
     return (
         <>
             <h1>Order container</h1>
-            <Link to="/new_order"><button type="button" class="btn btn-outline-primary">Start New Order</button></Link>
+            <Link to="/new_order"><button type="button" class="btn btn-outline-primary" onClick={onClickNewOrder}>Start New Order</button></Link>
             <div>{orders && populateOrders()}</div>
             
         </>

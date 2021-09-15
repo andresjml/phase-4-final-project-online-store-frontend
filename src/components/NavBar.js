@@ -19,10 +19,7 @@ function NavBar({ onLogout }) {
                 <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#" onClick={handleLogout}>Logout</a>
-                    </li>
+                <ul className="navbar-nav">                    
                     <li className="nav-item">
                     <Link className="nav-link" to="/orders">Orders</Link>
                     </li>
@@ -30,8 +27,8 @@ function NavBar({ onLogout }) {
                     <Link className="nav-link" to="/products">Products</Link>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link disabled">Disabled</a>
-                    </li>
+                    <Link className="nav-link active" aria-current="page" to="/" onClick={handleLogout}>Logout</Link>
+                    </li>                    
                 </ul>
                 </div>
             </div>

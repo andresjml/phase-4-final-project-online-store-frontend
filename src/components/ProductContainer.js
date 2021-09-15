@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import { BASE_URL } from '../constraints';
 import Product from '../components/Product'
+import {Link} from "react-router-dom";
 
-function ProductContainer({user}) {
+
+function ProductContainer({onClickNewOrder}) {
     const [products, setProducts]=useState(null)
 
     useEffect(() => {
@@ -13,18 +15,20 @@ function ProductContainer({user}) {
           }
         });
     }, []);
+
+
     
-    console.log(products)
+    
 
     function populateProducts(){
         
-        return (products.map(product => <Product key={product.id} product={product}/>))
+        return (products.map(product => <Product key={product.id} product={product} />))
     }
 
     return (
         <>
           <h1>Product Container</h1>
-          
+          <Link to="/new_order"><button type="button" class="btn btn-outline-primary" onClick={onClickNewOrder}>Start New Order</button></Link>
           <div>{products && populateProducts()}</div>
           
         </>
