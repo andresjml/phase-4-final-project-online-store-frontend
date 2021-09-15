@@ -36,8 +36,8 @@ function Order({order,onEdit, onDelete,onPaid}) {
     
     return (
         <>
-        <h2>Order # {order.id} Total $ {totalOrder.flat().reduce((acc,sum)=>acc+sum)} Status {order.paid? 'Paid':'Paid Pending'}</h2>
-        <button className="btn btn-danger" onClick={onPay}>Pay Order</button>
+        <h2>Order # {order.id} Total $ {totalOrder.flat().reduce((acc,sum)=>acc+sum)} Status {order.paid? 'Completed':'Paid Pending'}</h2>
+        {order.paid? null: <button className="btn btn-danger" onClick={onPay}>Pay Order</button>}
         <button className="btn btn-danger" onClick={()=>onDelete(order)}>Delete Order</button>
         {order.paid? populateOrderPaid(): populateOrder()}       
         
