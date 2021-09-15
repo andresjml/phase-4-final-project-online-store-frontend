@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import OrderProduct from '../components/OrderProduct'
 
 
-function Order({order,onEdit}) {
+function Order({order,onEdit, onDelete}) {
     const[total, setTotal]=useState([])
 
     function populateOrder(){        
@@ -18,6 +18,7 @@ function Order({order,onEdit}) {
     return (
         <>
         <h2>Order # {order.id}</h2>
+        <button className="btn btn-danger" onClick={()=>onDelete(order)}>Delete</button>
         {populateOrder()}       
         <p className="card-header">Total Order $ {totalOrder.flat().reduce((acc,sum)=>acc+sum)}</p>
         </>

@@ -20,11 +20,20 @@ function OrderContainer({user,onClickNewOrder}) {
         setOnEditItem(editedItem)
     }
 
+    function onDelete(deletedItem){
+        console.log(deletedItem)
+        fetch(BASE_URL + `/orders/${deletedItem.id}`, {
+            method: "DELETE",
+        })     
+        setOnEditItem(1)
+        
+    }
+
     
     
     function populateOrders(){
         
-        return (orders.map(order => <Order key={order.id} order={order} onEdit={onEdit}/>))
+        return (orders.map(order => <Order key={order.id} order={order} onEdit={onEdit} onDelete={onDelete}/>))
     }
 
     return (

@@ -44,6 +44,7 @@ function OrderItem({item,onEdit}) {
         fetch(BASE_URL + `/order_products/${deletedItem.id}`, {
             method: "DELETE",
         })     
+        onEdit(newItem)
         setDeleted(false);
         setToggle(!toggle);
     }
