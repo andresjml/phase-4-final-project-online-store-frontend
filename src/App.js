@@ -4,7 +4,6 @@ import NavBar from "./components/NavBar";
 import {Switch, Route} from "react-router-dom";
 import Home from '../src/components/Home'
 import Login from "./components/Login";
-import Signup from "./components/Signup";
 import OrderContainer from "../src/components/OrderContainer"
 import ProductContainer from './components/ProductContainer';
 import NewOrder from './components/NewOrder';
@@ -12,6 +11,7 @@ import NewOrder from './components/NewOrder';
 function App() {
   const [user, setUser] = useState(null)
   const[newOrderId, setNewOrderId]=useState()
+  const [updateOrder, setUpdateOrder]=useState()
   
   //FIND SESSION[:USER_ID] IN THE BACKEND
   console.log(user)
@@ -38,6 +38,8 @@ function App() {
       .then(res => res.json())
       .then(setNewOrderId);   
   }    
+
+  
   
 
   
@@ -52,13 +54,13 @@ function App() {
             <Home />
           </Route>
           <Route  path='/orders'>
-            <OrderContainer user={user} onClickNewOrder={onClickNewOrder}/>
+            <OrderContainer user={user} onClickNewOrder={onClickNewOrder} />
           </Route>
           <Route  path='/products'>
             <ProductContainer onClickNewOrder={onClickNewOrder} />
           </Route>
           <Route  path='/new_order'>
-            <NewOrder user={user} order={newOrderId} />
+            <NewOrder order={newOrderId} />
           </Route>
           
           
@@ -68,13 +70,7 @@ function App() {
   } else {
     return (
       <>
-        <Login onLogin={setUser} />
-          <Switch> 
-            <Route path= '/signup'>
-              <Signup/>
-            </Route>  
-          </Switch> 
-
+      <Login onLogin={setUser} /> 
       </>  
         );
   }

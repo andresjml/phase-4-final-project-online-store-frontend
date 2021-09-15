@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 
 function NewOrder({order}) {
     const [products, setProducts]=useState(null)
-    const [newItem, setNewItem]=useState({product_id: "",
-        product_qty: ""})
+    const [orderProducts, setOrderProducts]=useState(false)
+    const [newItem, setNewItem]=useState({product_id: "", product_qty: ""})
 
-    
+    console.log(order)
     
     
     //FETCH PRODUCTS
@@ -18,21 +18,19 @@ function NewOrder({order}) {
             response.json().then((resp) => setProducts(resp));
           }
         });
-    }, []);
-  
+    }, [orderProducts]);
+
+   
 
     
-
+    //CREATE NEW ORDER_PRODUCT LINE
     function handleInputChange(event) {
         setNewItem({
             ...newItem, 
             [event.target.name]:event.target.value
         })
         
-    }
-
-    
-
+    } 
     function handleSubmit(e){
         e.preventDefault()
         const itemToCreate = {            
@@ -51,17 +49,25 @@ function NewOrder({order}) {
         })
           .then(res => res.json())
           .then(r=>console.log(r)); 
+
+          setNewItem({product_qty: ""})
+          setProducts(null)
+          setOrderProducts(!orderProducts)
     } 
 
+    //DELETE ORDER
     function onDelete(deletedOrder){
         fetch(BASE_URL + `/orders/${deletedOrder.id}`, {
             method: "DELETE",
         })
     }
 
+    //POPULATE PRODUCTS FOR INPUT FORM
     function populateProducts(){        
         return (products.map(product => <option key={product.id} value={product.id} >{product.id}-{product.name}</option>))
     }
+
+    
 
     return (
         <div>
@@ -88,9 +94,8 @@ function NewOrder({order}) {
                     </button>                        
                 </div>
             </form>
-            <Link to="/products"><button className="btn btn-danger" onClick={()=>onDelete(order)}>
-                    Cancel Order
-            </button></Link>
+            <Link to="/products"><button className="btn btn-danger" onClick={()=>onDelete(order)}>Cancel Order</button></Link>
+            
         </div>
     )
 }

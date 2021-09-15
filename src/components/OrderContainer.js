@@ -35,7 +35,7 @@ function OrderContainer({user,onClickNewOrder}) {
     //POPULATE ORDERS    
     function populateOrders(){
         
-        return (orders.map(order => <Order key={order.id} order={order} onEdit={onEdit} onDelete={onDelete} onPaid={setUpdateState}/>))
+        return (orders.map(order => <Order key={order.id} order={order} onEdit={onEdit} onDelete={onDelete} onPaid={setUpdateState} />))
     }
 
     return (

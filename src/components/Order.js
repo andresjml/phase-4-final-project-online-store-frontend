@@ -2,6 +2,7 @@ import React from 'react'
 import OrderProduct from '../components/OrderProduct'
 import OrderProductPaid from '../components/OrderProductPaid'
 import { BASE_URL } from '../constraints'
+import {Link} from "react-router-dom"
 
 
 function Order({order,onEdit, onDelete,onPaid}) {
@@ -38,6 +39,7 @@ function Order({order,onEdit, onDelete,onPaid}) {
         <>
         <h2>Order # {order.id} Total $ {totalOrder.flat().reduce((acc,sum)=>acc+sum)} Status {order.paid? 'Completed':'Paid Pending'}</h2>
         {order.paid? null: <button className="btn btn-danger" onClick={onPay}>Pay Order</button>}
+        
         <button className="btn btn-danger" onClick={()=>onDelete(order)}>Delete Order</button>
         {order.paid? populateOrderPaid(): populateOrder()}       
         
