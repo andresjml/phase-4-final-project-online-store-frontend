@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { BASE_URL } from '../constraints'
 
-function OrderItem({item}) {
+function OrderItem({item,onEdit}) {
     const [newItem, setNewItem]=useState({...item})
     const [toggle, setToggle]=useState(false)
     const [deleted, setDeleted]=useState(true)
@@ -33,9 +33,10 @@ function OrderItem({item}) {
           body: JSON.stringify(itemToUpdate),
         })
           .then(res => res.json())
-          .then(setNewItem);  
+          .then(setNewItem);
+           
         setToggle(false)
-               
+        onEdit(newItem)  
     }    
 
    //DELETE ITEM

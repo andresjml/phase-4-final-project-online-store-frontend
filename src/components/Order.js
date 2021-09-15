@@ -2,11 +2,11 @@ import React, {useState} from 'react'
 import OrderProduct from '../components/OrderProduct'
 
 
-function Order({order}) {
-    
+function Order({order,onEdit}) {
+    const[total, setTotal]=useState([])
 
     function populateOrder(){        
-        return(order.order_products.map(item => <OrderProduct key={item.id} item={item} />))
+        return(order.order_products.map(item => <OrderProduct key={item.id} item={item} onEdit={onEdit} />))
     }
 
     

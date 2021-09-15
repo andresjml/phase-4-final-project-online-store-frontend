@@ -12,23 +12,18 @@ function Login({onLogin}) {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username }),
+        body: JSON.stringify({ username: username }),
         })
         .then((r) => r.json())
         .then((user) => onLogin(user));
     }
     return (
         <>
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <button type="submit">Login</button>
-        </form>
-        
+            </form>        
         </>
     )
 }

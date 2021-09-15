@@ -10,18 +10,20 @@ import ProductContainer from './components/ProductContainer';
 import NewOrder from './components/NewOrder';
 
 function App() {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState(null)
   const[newOrderId, setNewOrderId]=useState()
   
-  
+  console.log(user)
   useEffect(() => {
     fetch(BASE_URL+"/me")
       .then((response) => {
         if (response.ok) {
-        response.json().then((resp) => setUser(resp));
+        response.json().then((user) => setUser(user));
       }
     });
   }, []);
+
+  console.log(user)
 
   function onClickNewOrder(){
     fetch(BASE_URL +`/orders`, {
@@ -49,7 +51,7 @@ function App() {
             <Home />
           </Route>
           <Route  path='/orders'>
-            <OrderContainer user={user}/>
+            <OrderContainer user={user} onClickNewOrder={onClickNewOrder}/>
           </Route>
           <Route  path='/products'>
             <ProductContainer onClickNewOrder={onClickNewOrder} />
@@ -58,14 +60,22 @@ function App() {
             <NewOrder user={user} order={newOrderId} />
           </Route>
           
-          <Route path= '/signup'>
-            <Signup/>
-          </Route>  
+          
         </Switch>      
       </>
     );
   } else {
-    return <Login onLogin={setUser} />;
+    return (
+      <>
+        <Login onLogin={setUser} />
+          <Switch> 
+            <Route path= '/signup'>
+              <Signup/>
+            </Route>  
+          </Switch> 
+
+      </>  
+        );
   }
 }
 

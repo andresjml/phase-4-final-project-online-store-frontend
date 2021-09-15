@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 function OrderContainer({user,onClickNewOrder}) {
     const [orders,setOrders]=useState(null)
-    
+    const [onEditItem, setOnEditItem]=useState()
 
     useEffect(() => {
         fetch(BASE_URL+`/users/${user.id}/orders`)
@@ -14,13 +14,17 @@ function OrderContainer({user,onClickNewOrder}) {
             response.json().then((resp) => setOrders(resp));
           }
         });
-    }, []);
+    }, [onEditItem]);
+
+    function onEdit(editedItem){
+        setOnEditItem(editedItem)
+    }
 
     
     
     function populateOrders(){
         
-        return (orders.map(order => <Order key={order.id} order={order}/>))
+        return (orders.map(order => <Order key={order.id} order={order} onEdit={onEdit}/>))
     }
 
     return (
