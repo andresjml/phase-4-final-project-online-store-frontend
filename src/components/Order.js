@@ -31,7 +31,7 @@ function Order({order,onEdit, onDelete,onPaid}) {
             .then(res => res.json())
             .then(onPaid);   
           
-     }   
+    }   
 
     
     return (

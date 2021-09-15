@@ -4,7 +4,7 @@ import { BASE_URL } from '../constraints'
 function OrderProduct({item,onEdit}) {
     const [newItem, setNewItem]=useState({...item})
     const [toggle, setToggle]=useState(false)
-    const [deleted, setDeleted]=useState(true)
+    
 
     function handleEditClick(){
         setToggle(!toggle)
@@ -44,8 +44,7 @@ function OrderProduct({item,onEdit}) {
         fetch(BASE_URL + `/order_products/${deletedItem.id}`, {
             method: "DELETE",
         })     
-        onEdit(newItem)
-        setDeleted(false);
+        onEdit(deletedItem)        
         setToggle(!toggle);
     }
 
@@ -53,14 +52,14 @@ function OrderProduct({item,onEdit}) {
 
     return (
         <> 
-        {deleted && (     
+             
         <div className="card" style={{width: '30rem'}}>
             <div className="card-header">
                 {newItem.product.name}/  Qty: {newItem.product_qty} / Price$: {newItem.product.price} / Total Price$ {newItem.product_qty*newItem.product.price}
                 <button type="button" className="btn btn-outline-primary btn-sm" onClick={handleEditClick}>Edit</button>                
             </div>            
         </div>
-        )}
+        
 
         {toggle &&(
             <>
