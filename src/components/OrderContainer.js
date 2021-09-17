@@ -17,25 +17,16 @@ function OrderContainer({user,onClickNewOrder}) {
         });
     }, [updateState]);
 
-    //UPDATE STATE
+    //UPDATE STATE ON EDIT ORDERPRODUCT ITEM
     function onEdit(editedItem){
         setUpdateState(editedItem)
     }
 
-    //DELETE AN ORDER
-    function onDelete(deletedItem){
-        console.log(deletedItem)
-        fetch(BASE_URL + `/orders/${deletedItem.id}`, {
-            method: "DELETE",
-        })     
-        setUpdateState(1)
-        
-    }
+    
 
     //POPULATE ORDERS    
-    function populateOrders(){
-        
-        return (orders.map(order => <Order key={order.id} order={order} onEdit={onEdit} onDelete={onDelete} onPaid={setUpdateState} />))
+    function populateOrders(){        
+        return (orders.map(order => <Order key={order.id} order={order} onEdit={onEdit} onDelete={setUpdateState} onPaid={setUpdateState} />))
     }
 
     return (

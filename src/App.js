@@ -11,10 +11,10 @@ import NewOrder from './components/NewOrder';
 function App() {
   const [user, setUser] = useState(null)
   const[newOrderId, setNewOrderId]=useState()
-  const [updateOrder, setUpdateOrder]=useState()
+  const [updateOrder, setUpdateOrder]=useState(null)
   
   //FIND SESSION[:USER_ID] IN THE BACKEND
-  console.log(user)
+  
   useEffect(() => {
     fetch(BASE_URL+"/me")
       .then((response) => {
@@ -24,7 +24,7 @@ function App() {
     });
   }, []);
 
-  console.log(user)
+ 
 
   //CREATE A NEW ORDER (TO PASS NEW ORDER ID TO NEW ORDER COMPONENT)
   function onClickNewOrder(){
@@ -39,7 +39,12 @@ function App() {
       .then(setNewOrderId);   
   }    
 
-  
+  //UPDATING ORDER TO SEND BACK TO NEWORDER
+  function onAdd(addedItem){
+    fetch(BASE_URL +`/users/${user.id}/orders/${addedItem.order_id}`)
+      .then(res => res.json())
+      .then(setUpdateOrder);
+  }
   
 
   
@@ -60,7 +65,7 @@ function App() {
             <ProductContainer onClickNewOrder={onClickNewOrder} />
           </Route>
           <Route  path='/new_order'>
-            <NewOrder order={newOrderId} />
+            <NewOrder order={newOrderId} onAdd={onAdd} updatedOrder={updateOrder}/>
           </Route>
           
           

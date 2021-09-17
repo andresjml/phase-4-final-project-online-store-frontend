@@ -2,13 +2,12 @@ import React, {useEffect, useState} from 'react'
 import { BASE_URL } from '../constraints/index';
 import {Link} from "react-router-dom";
 
-function NewOrder({order}) {
+function NewOrder({order, onAdd,updateOrder}) {
     const [products, setProducts]=useState(null)
     const [orderProducts, setOrderProducts]=useState(false)
     const [newItem, setNewItem]=useState({product_id: "", product_qty: ""})
-
-    console.log(order)
     
+        
     
     //FETCH PRODUCTS
     useEffect(() => {
@@ -23,7 +22,7 @@ function NewOrder({order}) {
    
 
     
-    //CREATE NEW ORDER_PRODUCT LINE
+    //HANDLE INPUT CHANGE
     function handleInputChange(event) {
         setNewItem({
             ...newItem, 
@@ -31,6 +30,8 @@ function NewOrder({order}) {
         })
         
     } 
+
+    //CREATE A NEW ORDERPRODUCT ITEM
     function handleSubmit(e){
         e.preventDefault()
         const itemToCreate = {            
@@ -38,7 +39,7 @@ function NewOrder({order}) {
             product_id: newItem.product_id,
             product_qty: newItem.product_qty
         }
-        console.log(itemToCreate)
+        
 
         fetch(BASE_URL +`/order_products`, {
           method: "POST",
@@ -48,13 +49,15 @@ function NewOrder({order}) {
           body: JSON.stringify(itemToCreate),
         })
           .then(res => res.json())
-          .then(r=>console.log(r)); 
+          .then(addedItem=>onAdd(addedItem)); 
 
           setNewItem({product_qty: ""})
           setProducts(null)
-          setOrderProducts(!orderProducts)
+          setOrderProducts(!orderProducts)//TO UPDATE PRODUCT FETCH
+          
     } 
 
+    
     //DELETE ORDER
     function onDelete(deletedOrder){
         fetch(BASE_URL + `/orders/${deletedOrder.id}`, {
@@ -65,6 +68,11 @@ function NewOrder({order}) {
     //POPULATE PRODUCTS FOR INPUT FORM
     function populateProducts(){        
         return (products.map(product => <option key={product.id} value={product.id} >{product.id}-{product.name}</option>))
+    }
+
+    //POPULATE PRODUCTS FOR DISPLAY
+    function populateProductsDisplay(){        
+        console.log(updateOrder)
     }
 
     
@@ -95,7 +103,7 @@ function NewOrder({order}) {
                 </div>
             </form>
             <Link to="/products"><button className="btn btn-danger" onClick={()=>onDelete(order)}>Cancel Order</button></Link>
-            
+            {populateProductsDisplay()}
         </div>
     )
 }
