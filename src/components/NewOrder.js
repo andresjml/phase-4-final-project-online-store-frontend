@@ -2,10 +2,11 @@ import React, {useEffect, useState} from 'react'
 import { BASE_URL } from '../constraints/index';
 import {Link} from "react-router-dom";
 
-function NewOrder({order, onAdd,updateOrder}) {
+function NewOrder({order, onAdd}) {
     const [products, setProducts]=useState(null)
     const [orderProducts, setOrderProducts]=useState(false)
     const [newItem, setNewItem]=useState({product_id: "", product_qty: ""})
+    const [updateState, setUpdateState]=useState()
     
         
     
@@ -17,7 +18,9 @@ function NewOrder({order, onAdd,updateOrder}) {
             response.json().then((resp) => setProducts(resp));
           }
         });
-    }, [orderProducts]);
+    }, [updateState]);
+
+    
 
    
 
@@ -49,12 +52,18 @@ function NewOrder({order, onAdd,updateOrder}) {
           body: JSON.stringify(itemToCreate),
         })
           .then(res => res.json())
-          .then(addedItem=>onAdd(addedItem)); 
+          .then(setUpdateState); 
 
-          setNewItem({product_qty: ""})
-          setProducts(null)
-          setOrderProducts(!orderProducts)//TO UPDATE PRODUCT FETCH
-          
+        setNewItem({product_qty: ""})
+        setProducts(null)
+        //setUpdateState(!updateState)//TO UPDATE PRODUCT FETCH
+
+        fetch(BASE_URL+`/users/${order.user_id}/orders/${order.id}`)
+        .then((response) => {
+            if (response.ok) {
+            response.json().then((resp) => setOrderProducts(resp));
+        }
+        });  
     } 
 
     
@@ -72,7 +81,7 @@ function NewOrder({order, onAdd,updateOrder}) {
 
     //POPULATE PRODUCTS FOR DISPLAY
     function populateProductsDisplay(){        
-        console.log(updateOrder)
+        return (orderProducts.order_products.map(product => <p key={product.id} >{product.product.name}-{product.product_qty}</p>))
     }
 
     
@@ -103,7 +112,7 @@ function NewOrder({order, onAdd,updateOrder}) {
                 </div>
             </form>
             <Link to="/products"><button className="btn btn-danger" onClick={()=>onDelete(order)}>Cancel Order</button></Link>
-            {populateProductsDisplay()}
+            {orderProducts&&populateProductsDisplay()}
         </div>
     )
 }

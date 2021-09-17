@@ -65,7 +65,7 @@ function App() {
             <ProductContainer onClickNewOrder={onClickNewOrder} />
           </Route>
           <Route  path='/new_order'>
-            <NewOrder order={newOrderId} onAdd={onAdd} updatedOrder={updateOrder}/>
+            <NewOrder order={newOrderId} onAdd={onAdd} />
           </Route>
           
           
