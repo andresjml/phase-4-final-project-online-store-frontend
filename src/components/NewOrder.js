@@ -7,6 +7,7 @@ function NewOrder({order}) {
     const [orderProducts, setOrderProducts]=useState(false)
     const [newItem, setNewItem]=useState({product_id: "", product_qty: ""})
     const [updateState, setUpdateState]=useState()
+    const [errors, setErrors] = useState(null);
     
         //console.log(order)
     
@@ -46,12 +47,18 @@ function NewOrder({order}) {
           },
           body: JSON.stringify(itemToCreate),
         })
-          .then(res => res.json())
-          .then(setUpdateState); 
+        .then((response) => {
+            if (response.ok) {
+            response.json().then((resp) => setUpdateState(resp));
+          }else {
+            response.json().then((errorData) => {setErrors(errorData.errors); setUpdateState(errorData)});
+          }
+        }) 
 
+        console.log(errors)
         setNewItem({product_qty: ""})
         setProducts(null)
-        //setUpdateState(!updateState)//TO UPDATE PRODUCT FETCH
+        
 
         fetch(BASE_URL+`/users/${order.user_id}/orders/${order.id}`)
         .then((response) => {
@@ -82,7 +89,7 @@ function NewOrder({order}) {
     
 
     return (
-        <div>
+        <div>            
             {order&&<h1>Order # {order.id}</h1>}
             <form onSubmit={handleSubmit} style={{width: '32rem'}} >
                 <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name='product_id' onChange={handleInputChange}>
@@ -104,7 +111,17 @@ function NewOrder({order}) {
                 <div className="col-5 pt-2">
                     <button type="submit" className="btn btn-outline-success">
                         Add to Order
-                    </button>                        
+                    </button>  
+                    {
+                        errors && (
+
+                            <div class="alert alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Holy guacamole!</strong> Product/Quantity {errors.product_qty}.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={()=>setErrors(null)}></button>
+                            </div>
+                            
+                        )
+                    }                       
                 </div>
             </form>
             <div className="col-5 pt-2">
@@ -112,10 +129,11 @@ function NewOrder({order}) {
             <ul>
             {orderProducts&&populateProductsDisplay()}
             </ul>
-            <Link to="/products"><button className="btn btn-outline-danger" onClick={()=>onDelete(order)}>Cancel Order</button></Link>
+            <Link to="/orders"><button className="btn btn-outline-danger" onClick={()=>onDelete(order)}>Cancel Order</button></Link>
             <Link to="/orders"><button className="btn btn-outline-info" >Review Orders</button></Link>
+            
             </div>
-                        
+                    
         </div>
     )
 }
