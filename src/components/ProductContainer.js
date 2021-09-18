@@ -52,7 +52,7 @@ function ProductContainer() {
     
 
     return (
-        <>
+        <div className="container">
           <h1>Product Container</h1>
           <select class="form-select" aria-label="Default select example" onChange={handleImputChange}>
                 <option value>Select a Category</option>
@@ -60,10 +60,10 @@ function ProductContainer() {
                 {categories&&populateCategories()}
           </select>
           
-          <div>{filterP && populateProducts()}</div>
+          <div className="row">{filterP && populateProducts()}</div>
           
           
-        </>
+        </div>
     )
 }
 
