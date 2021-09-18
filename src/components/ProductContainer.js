@@ -54,7 +54,7 @@ function ProductContainer() {
     return (
         <div className="container">
           <h1>Product Container</h1>
-          <select class="form-select" aria-label="Default select example" onChange={handleImputChange}>
+          <select class="form-select" aria-label="Default select example" onChange={handleImputChange} style={{width: '18rem'}}>
                 <option value>Select a Category</option>
                 <option  name='id' value="All" >All</option>
                 {categories&&populateCategories()}
