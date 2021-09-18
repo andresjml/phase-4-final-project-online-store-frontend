@@ -8,12 +8,12 @@ import {Link} from "react-router-dom"
 function Order({order,onEdit, onDelete,onPaid}) {
     
     
-    //POPULATE ORDERPRODUCT  PENDING PAYMENT
+    //POPULATE ORDERPRODUCT COMPONENT  PENDING PAYMENT
     function populateOrder(){        
         return(order.order_products.map(item => <OrderProduct key={item.id} item={item} onEdit={onEdit} />))
     }
 
-    //POPULATE ORDERPRODUCT  PAID
+    //POPULATE ORDERPRODUCT  COMPONENT PAID
     function populateOrderPaid(){        
         return(order.order_products.map(item => <OrderProductPaid key={item.id} item={item} />))
     }
