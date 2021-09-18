@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { BASE_URL } from '../constraints/index';
 import {Link} from "react-router-dom";
 
-function NewOrder({order, onAdd}) {
+function NewOrder({order}) {
     const [products, setProducts]=useState(null)
     const [orderProducts, setOrderProducts]=useState(false)
     const [newItem, setNewItem]=useState({product_id: "", product_qty: ""})
@@ -76,25 +76,25 @@ function NewOrder({order, onAdd}) {
 
     //POPULATE PRODUCTS FOR INPUT FORM
     function populateProducts(){        
-        return (products.map(product => <option key={product.id} value={product.id} >{product.id}-{product.name}</option>))
+        return (products.map(product => <option key={product.id} value={product.id} >{product.name} // Unit Price {product.price}</option>))
     }
 
     //POPULATE PRODUCTS FOR DISPLAY
     function populateProductsDisplay(){        
-        return (orderProducts.order_products.map(product => <p key={product.id} >{product.product.name}-{product.product_qty}</p>))
+        return (orderProducts.order_products.map(product => <li key={product.id} ><h4>{product.product.name}</h4><p>Qty: {product.product_qty}//Price $: {product.product.price}</p></li>))
     }
 
     
 
     return (
         <div>
-            <h1>New Order</h1>
-            <form onSubmit={handleSubmit} >
+            <h1>Order # {order.id}</h1>
+            <form onSubmit={handleSubmit} style={{width: '32rem'}} >
                 <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name='product_id' onChange={handleInputChange}>
-                    <option >Open this select menu</option>
+                    <option >Select Item</option>
                     {products&&populateProducts()}
                 </select>
-                <div className="col-5 pt-2">
+                <div className="col-5 pt-2" style={{width: '8rem'}}>
                             Product Quantity: 
                             <input
                                 className="form-control"
@@ -104,6 +104,7 @@ function NewOrder({order, onAdd}) {
                                 placeholder="Quantity"
                                 onChange={handleInputChange}
                             />
+                            
                 </div>
                 <div className="col-5 pt-2">
                     <button type="submit" className="btn btn-success">
@@ -112,14 +113,14 @@ function NewOrder({order, onAdd}) {
                 </div>
             </form>
             <div className="col-5 pt-2">
+            <h3>Items</h3>
+            <ul>
+            {orderProducts&&populateProductsDisplay()}
+            </ul>
             <Link to="/products"><button className="btn btn-danger" onClick={()=>onDelete(order)}>Cancel Order</button></Link>
-            </div>
-            <div className="col-5 pt-2">
             <Link to="/orders"><button className="btn btn-danger" >Review Orders</button></Link>
             </div>
-            <div>
-            {orderProducts&&populateProductsDisplay()}
-            </div>
+                        
         </div>
     )
 }
