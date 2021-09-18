@@ -18,10 +18,8 @@ function Login({onLogin}) {
 
 
 
-    function handleSignupClick(){
-        setToggle(!toggle)
-    }
-
+    
+    //lOGIN
     function handleSubmit(e) {
         e.preventDefault();
         fetch(BASE_URL+"/login", {
@@ -40,7 +38,7 @@ function Login({onLogin}) {
         })
     }
 
-    console.log(errors)
+    
     //UPDATED FORM
     function handleInputChange(event) {
         setNewUser({
@@ -50,6 +48,10 @@ function Login({onLogin}) {
         
     }
 
+    //CREATE A NEW USER
+    function handleSignupClick(){
+        setToggle(!toggle)
+    }
     function handleNewUserSubmit(e) {
         e.preventDefault();                
 
