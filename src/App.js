@@ -11,7 +11,6 @@ import NewOrder from './components/NewOrder';
 function App() {
   const [user, setUser] = useState(null)
   const[newOrderId, setNewOrderId]=useState()
-  const [updateOrder, setUpdateOrder]=useState(null)
   
   //FIND SESSION[:USER_ID] IN THE BACKEND
   
@@ -39,12 +38,6 @@ function App() {
       .then(setNewOrderId);   
   }    
 
-  //UPDATING ORDER TO SEND BACK TO NEWORDER
-  function onAdd(addedItem){
-    fetch(BASE_URL +`/users/${user.id}/orders/${addedItem.order_id}`)
-      .then(res => res.json())
-      .then(setUpdateOrder);
-  }
   
 
   
@@ -61,10 +54,10 @@ function App() {
             <OrderContainer user={user} onClickNewOrder={onClickNewOrder} />
           </Route>
           <Route  path='/products'>
-            <ProductContainer onClickNewOrder={onClickNewOrder} />
+            <ProductContainer />
           </Route>
           <Route  path='/new_order'>
-            <NewOrder order={newOrderId} onAdd={onAdd} />
+            <NewOrder order={newOrderId} />
           </Route>
           
           

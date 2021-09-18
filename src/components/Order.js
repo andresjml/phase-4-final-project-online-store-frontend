@@ -1,8 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import OrderProduct from '../components/OrderProduct'
 import OrderProductPaid from '../components/OrderProductPaid'
 import { BASE_URL } from '../constraints'
-import {Link} from "react-router-dom"
 
 
 function Order({order,onEdit, onDelete,onPaid}) {

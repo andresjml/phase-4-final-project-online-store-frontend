@@ -46,7 +46,7 @@ function ProductContainer() {
     }
     //HANDLE FILTER CHANGE
     function handleImputChange(event){               
-       return(event.target.value=='All'?  setFilterP(products):  setFilterP(products.filter(p=>p.category_id==event.target.value)));
+       return(event.target.value==='All'?  setFilterP(products):  setFilterP(products.filter(p=>p.category_id==event.target.value)));
     }
     
     

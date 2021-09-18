@@ -20,18 +20,12 @@ function NewOrder({order}) {
         });
     }, [updateState]);
 
-    
-
-   
-
-    
     //HANDLE INPUT CHANGE
     function handleInputChange(event) {
         setNewItem({
             ...newItem, 
             [event.target.name]:event.target.value
-        })
-        
+        })        
     } 
 
     //CREATE A NEW ORDERPRODUCT ITEM
