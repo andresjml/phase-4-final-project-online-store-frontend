@@ -56,7 +56,7 @@ function App() {
         <NavBar onLogout={setUser}/>
         <Switch>
           <Route exact path='/'>
-            <Home />
+            <Home user={user} />
           </Route>
           <Route  path='/orders'>
             <OrderContainer user={user} onClickNewOrder={onClickNewOrder} />

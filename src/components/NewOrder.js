@@ -111,8 +111,15 @@ function NewOrder({order, onAdd}) {
                     </button>                        
                 </div>
             </form>
+            <div className="col-5 pt-2">
             <Link to="/products"><button className="btn btn-danger" onClick={()=>onDelete(order)}>Cancel Order</button></Link>
+            </div>
+            <div className="col-5 pt-2">
+            <Link to="/orders"><button className="btn btn-danger" >Review Orders</button></Link>
+            </div>
+            <div>
             {orderProducts&&populateProductsDisplay()}
+            </div>
         </div>
     )
 }
