@@ -49,7 +49,7 @@ function Order({order,onEdit, onDelete,onPaid}) {
     
     return (
         <>
-        <div class="card">
+        <div class="card" style={{width: '32rem'}}>
             <div class="card-header">
             Order # {order.id}
             </div>
