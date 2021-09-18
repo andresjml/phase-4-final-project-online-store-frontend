@@ -20,6 +20,7 @@ function NewOrder({order}) {
         });
     }, [updateState]);
 
+
     //HANDLE INPUT CHANGE
     function handleInputChange(event) {
         setNewItem({
@@ -28,7 +29,7 @@ function NewOrder({order}) {
         })        
     } 
 
-    //CREATE A NEW ORDERPRODUCT ITEM
+    //CREATE A NEW ORDER_PRODUCT ITEM
     function handleSubmit(e){
         e.preventDefault()
         const itemToCreate = {            
@@ -37,7 +38,7 @@ function NewOrder({order}) {
             product_qty: newItem.product_qty
         }
         
-
+        console.log(itemToCreate)
         fetch(BASE_URL +`/order_products`, {
           method: "POST",
           headers: {
@@ -70,12 +71,12 @@ function NewOrder({order}) {
 
     //POPULATE PRODUCTS FOR INPUT FORM
     function populateProducts(){        
-        return (products.map(product => <option key={product.id} value={product.id} >{product.name} // Unit Price {product.price}</option>))
+        return (products.map(product => <option key={product.id} value={product.id} >{product.name} / Unit Price {product.price}</option>))
     }
 
     //POPULATE PRODUCTS FOR DISPLAY
     function populateProductsDisplay(){        
-        return (orderProducts.order_products.map(product => <li key={product.id} ><h4>{product.product.name}</h4><p>Qty: {product.product_qty}//Price $: {product.product.price}</p></li>))
+        return (orderProducts.order_products.map(product => <li key={product.id} ><h4>{product.product.name}</h4><p>Qty: {product.product_qty}/ Price $: {product.product.price}</p></li>))
     }
 
     
@@ -101,7 +102,7 @@ function NewOrder({order}) {
                             
                 </div>
                 <div className="col-5 pt-2">
-                    <button type="submit" className="btn btn-success">
+                    <button type="submit" className="btn btn-outline-success">
                         Add to Order
                     </button>                        
                 </div>
@@ -111,8 +112,8 @@ function NewOrder({order}) {
             <ul>
             {orderProducts&&populateProductsDisplay()}
             </ul>
-            <Link to="/products"><button className="btn btn-danger" onClick={()=>onDelete(order)}>Cancel Order</button></Link>
-            <Link to="/orders"><button className="btn btn-danger" >Review Orders</button></Link>
+            <Link to="/products"><button className="btn btn-outline-danger" onClick={()=>onDelete(order)}>Cancel Order</button></Link>
+            <Link to="/orders"><button className="btn btn-outline-info" >Review Orders</button></Link>
             </div>
                         
         </div>

@@ -55,8 +55,8 @@ function Order({order,onEdit, onDelete,onPaid}) {
             <div class="card-body">
                 <h5 class="card-title">Total Order $ {totalOrder}, Status: {order.paid? 'Completed':'Paid Pending'}</h5>
                 <p class="card-text">{order.paid? populateOrderPaid(): populateOrder()}</p>
-                {order.paid? null: <button className="btn btn-danger" onClick={onPay}>Pay Order</button>}
-                <button className="btn btn-danger" onClick={()=>onDeleteOrder(order)}>Delete Order</button>
+                {order.paid? null: <button className="btn btn-outline-success" onClick={onPay}>Pay Order</button>}
+                <button className="btn btn-outline-danger" onClick={()=>onDeleteOrder(order)}>Delete Order</button>
             </div>
         </div>
         </div>
