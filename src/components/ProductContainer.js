@@ -45,12 +45,11 @@ function ProductContainer() {
         return (filterP.map(product => <Product key={product.id} product={product} />))        
     }
     //HANDLE FILTER CHANGE
-    function handleImputChange(event){  
-        console.log(event.target.value)     
+    function handleImputChange(event){               
        return(event.target.value=='All'?  setFilterP(products):  setFilterP(products.filter(p=>p.category_id==event.target.value)));
     }
     
-    console.log(filterP)
+    
 
     return (
         <>
