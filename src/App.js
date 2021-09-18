@@ -10,7 +10,7 @@ import NewOrder from './components/NewOrder';
 
 function App() {
   const [user, setUser] = useState(null)
-  const[newOrderId, setNewOrderId]=useState()
+  const[newOrderId, setNewOrderId]=useState(null)
   
   //FIND SESSION[:USER_ID] IN THE BACKEND
   
@@ -38,7 +38,7 @@ function App() {
       .then(setNewOrderId);   
   }    
 
-
+console.log(newOrderId)
 
   
 

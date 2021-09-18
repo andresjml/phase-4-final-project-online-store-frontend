@@ -8,7 +8,7 @@ function NewOrder({order}) {
     const [newItem, setNewItem]=useState({product_id: "", product_qty: ""})
     const [updateState, setUpdateState]=useState()
     
-        
+        //console.log(order)
     
     //FETCH PRODUCTS
     useEffect(() => {
@@ -38,7 +38,7 @@ function NewOrder({order}) {
             product_qty: newItem.product_qty
         }
         
-        console.log(itemToCreate)
+        //console.log(itemToCreate)
         fetch(BASE_URL +`/order_products`, {
           method: "POST",
           headers: {
@@ -83,7 +83,7 @@ function NewOrder({order}) {
 
     return (
         <div>
-            <h1>Order # {order.id}</h1>
+            {order&&<h1>Order # {order.id}</h1>}
             <form onSubmit={handleSubmit} style={{width: '32rem'}} >
                 <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name='product_id' onChange={handleInputChange}>
                     <option >Select Item</option>
