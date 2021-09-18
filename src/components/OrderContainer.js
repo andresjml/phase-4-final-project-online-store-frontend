@@ -32,7 +32,7 @@ function OrderContainer({user,onClickNewOrder}) {
     return (
         <div className='container'>
             <h1>Orders</h1>
-            <Link to="/new_order"><button type="button" class="btn btn-outline-primary" onClick={onClickNewOrder}>Start New Order</button></Link>
+            <Link to="/new_order"><button type="button" className="btn btn-outline-primary m-4" onClick={onClickNewOrder}>Start New Order</button></Link>
             <div className='row'>{orders && populateOrders()}</div>
             
         </div>

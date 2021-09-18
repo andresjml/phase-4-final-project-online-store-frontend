@@ -56,7 +56,7 @@ function OrderProduct({item,onEdit}) {
         <div className="card" style={{width: '30rem'}}>
             <div className="card-header">
                 {newItem.product.name}/  Qty: {newItem.product_qty} / Price$: {newItem.product.price} / Total Price$ {newItem.product_qty*newItem.product.price}
-                <button type="button" className="btn btn-outline-primary btn-sm" onClick={handleEditClick}>Edit</button>                
+                <button type="button" className="btn btn-outline-primary btn-sm m-2" onClick={handleEditClick}>Edit</button>                
             </div>            
         </div>
         

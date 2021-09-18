@@ -47,16 +47,16 @@ function Order({order,onEdit, onDelete,onPaid}) {
 
     
     return (
-        <div className='col'>
-        <div class="card" style={{width: '32rem'}}>
+        <div className='col '>
+        <div className="card m-4 " style={{width: '32rem'}}>
             <div class="card-header">
             Order # {order.id}
             </div>
             <div class="card-body">
                 <h5 class="card-title">Total Order $ {totalOrder}, Status: {order.paid? 'Completed':'Paid Pending'}</h5>
                 <p class="card-text">{order.paid? populateOrderPaid(): populateOrder()}</p>
-                {order.paid? null: <button className="btn btn-outline-success" onClick={onPay}>Pay Order</button>}
-                <button className="btn btn-outline-danger" onClick={()=>onDeleteOrder(order)}>Delete Order</button>
+                {order.paid? null: <button className="btn btn-outline-success m-2" onClick={onPay}>Pay Order</button>}
+                <button className="btn btn-outline-danger m-2" onClick={()=>onDeleteOrder(order)}>Delete Order</button>
             </div>
         </div>
         </div>

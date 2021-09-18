@@ -109,7 +109,7 @@ function NewOrder({order}) {
                             
                 </div>
                 <div className="col-5 pt-2">
-                    <button type="submit" className="btn btn-outline-success">
+                    <button type="submit" className="btn btn-outline-success m-2">
                         Add to Order
                     </button>  
                     {
@@ -129,8 +129,8 @@ function NewOrder({order}) {
             <ul>
             {orderProducts&&populateProductsDisplay()}
             </ul>
-            <Link to="/orders"><button className="btn btn-outline-danger" onClick={()=>onDelete(order)}>Cancel Order</button></Link>
-            <Link to="/orders"><button className="btn btn-outline-info" >Review Orders</button></Link>
+            <Link to="/orders"><button className="btn btn-outline-danger m-2" onClick={()=>onDelete(order)}>Cancel Order</button></Link>
+            <Link to="/orders"><button className="btn btn-outline-info m-2" >Review Orders</button></Link>
             
             </div>
                     
