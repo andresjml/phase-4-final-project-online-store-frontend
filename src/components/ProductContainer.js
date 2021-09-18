@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { BASE_URL } from '../constraints';
 import Product from '../components/Product'
-import {Link} from "react-router-dom";
 
 
 function ProductContainer() {
@@ -39,25 +38,26 @@ function ProductContainer() {
 
     //POPULATE CATEGORIES FOR INPUT FORM
     function populateCategories(){               
-        return (categories.map(category => <option key={category.id} name='id' value={category.id} >{category.name}</option>))
+        return (categories.map(category => <option key={category.id} value={category.id} >{category.name}</option>))
     }  
     //POPULATE PRODUCTS
     function populateProducts(){             
         return (filterP.map(product => <Product key={product.id} product={product} />))        
     }
     //HANDLE FILTER CHANGE
-    function handleImputChange(event){        
-       return(event.target.value="All"?  setFilterP(products):  setFilterP(products.filter(p=>p.category_id==event.target.value)));
+    function handleImputChange(event){  
+        console.log(event.target.value)     
+       return(event.target.value=='All'?  setFilterP(products):  setFilterP(products.filter(p=>p.category_id==event.target.value)));
     }
     
-    
+    console.log(filterP)
 
     return (
         <>
           <h1>Product Container</h1>
           <select class="form-select" aria-label="Default select example" onChange={handleImputChange}>
-                <option selected>Select a Category</option>
-                <option  name='id' >All</option>
+                <option value>Select a Category</option>
+                <option  name='id' value="All" >All</option>
                 {categories&&populateCategories()}
           </select>
           
