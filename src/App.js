@@ -51,9 +51,8 @@ function App() {
 
   if (user) {
     return (
-      <>
-      <h2>Welcome, {user.username}!</h2>      
-        <NavBar onLogout={setUser}/>
+      <>            
+        <NavBar onLogout={setUser} user={user}/>
         <Switch>
           <Route exact path='/'>
             <Home user={user} />

@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom";
 import { BASE_URL } from '../constraints';
 
-function NavBar({ onLogout }) {
+function NavBar({ onLogout, user }) {
     function handleLogout() {
         fetch(BASE_URL+"/logout", {
           method: "DELETE",
@@ -19,18 +19,21 @@ function NavBar({ onLogout }) {
                 <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">                    
-                    <li className="nav-item">
-                    <Link className="nav-link" to="/orders">Orders</Link>
-                    </li>
+                <ul className="navbar-nav"> 
                     <li className="nav-item">
                     <Link className="nav-link" to="/products">Products</Link>
-                    </li>
+                    </li>                   
+                    <li className="nav-item">
+                    <Link className="nav-link" to="/orders">Orders</Link>
+                    </li>                    
                     <li className="nav-item">
                     <Link className="nav-link active" aria-current="page" to="/" onClick={handleLogout}>Logout</Link>
                     </li>                    
-                </ul>
+                </ul>                
                 </div>
+            </div>
+            <div className="navbar-brand">
+                Username: {user.username}
             </div>
         </nav>
     )
