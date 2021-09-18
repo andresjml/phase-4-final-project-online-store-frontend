@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import OrderProduct from '../components/OrderProduct'
 import OrderProductPaid from '../components/OrderProductPaid'
 import { BASE_URL } from '../constraints'
@@ -6,6 +6,7 @@ import {Link} from "react-router-dom"
 
 
 function Order({order,onEdit, onDelete,onPaid}) {
+    
     
     //POPULATE ORDERPRODUCT  PENDING PAYMENT
     function populateOrder(){        
@@ -40,19 +41,25 @@ function Order({order,onEdit, onDelete,onPaid}) {
         
         fetch(BASE_URL + `/orders/${deletedItem.id}`, {
             method: "DELETE",
-        })     
-        onDelete(Math.random())        
+        })
+          
+        onDelete(deletedItem)        
     }
 
     
     return (
         <>
-        <h2>Order # {order.id} Total $ {totalOrder} Status {order.paid? 'Completed':'Paid Pending'}</h2>
-        {order.paid? null: <button className="btn btn-danger" onClick={onPay}>Pay Order</button>}
-        
-        <button className="btn btn-danger" onClick={()=>onDeleteOrder(order)}>Delete$Order</button>
-        {order.paid? populateOrderPaid(): populateOrder()}       
-        
+        <div class="card">
+            <div class="card-header">
+            Order # {order.id}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Total Order $ {totalOrder}, Status: {order.paid? 'Completed':'Paid Pending'}</h5>
+                <p class="card-text">{order.paid? populateOrderPaid(): populateOrder()}</p>
+                {order.paid? null: <button className="btn btn-danger" onClick={onPay}>Pay Order</button>}
+                <button className="btn btn-danger" onClick={()=>onDeleteOrder(order)}>Delete Order</button>
+            </div>
+        </div>
         </>
     )
 }
