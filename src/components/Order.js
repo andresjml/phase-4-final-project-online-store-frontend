@@ -48,7 +48,7 @@ function Order({order,onEdit, onDelete,onPaid}) {
 
     
     return (
-        <>
+        <div className='col'>
         <div class="card" style={{width: '32rem'}}>
             <div class="card-header">
             Order # {order.id}
@@ -60,7 +60,7 @@ function Order({order,onEdit, onDelete,onPaid}) {
                 <button className="btn btn-danger" onClick={()=>onDeleteOrder(order)}>Delete Order</button>
             </div>
         </div>
-        </>
+        </div>
     )
 }
 

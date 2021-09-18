@@ -30,12 +30,12 @@ function OrderContainer({user,onClickNewOrder}) {
     }
 
     return (
-        <>
-            <h1>Order container</h1>
+        <div className='container'>
+            <h1>Orders</h1>
             <Link to="/new_order"><button type="button" class="btn btn-outline-primary" onClick={onClickNewOrder}>Start New Order</button></Link>
-            <div>{orders && populateOrders()}</div>
+            <div className='row'>{orders && populateOrders()}</div>
             
-        </>
+        </div>
     );
 }
 
