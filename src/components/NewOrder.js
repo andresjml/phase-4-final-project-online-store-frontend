@@ -55,7 +55,7 @@ function NewOrder({order}) {
           }
         }) 
 
-        console.log(errors)
+        //console.log(errors)
         setNewItem({product_qty: ""})
         setProducts(null)
         
